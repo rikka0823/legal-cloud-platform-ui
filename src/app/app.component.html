@@ -1,0 +1,14 @@
+<!-- 將當前路徑傳至 app-toolbar-->
+ @if(router.url != '/' && router.url != '/search'){
+   <app-toolbar [routerUrl]='router.url'></app-toolbar>
+}
+
+
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- loading -->
+<ngx-ui-loader></ngx-ui-loader>
+

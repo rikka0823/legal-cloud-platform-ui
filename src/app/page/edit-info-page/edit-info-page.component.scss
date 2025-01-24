@@ -1,0 +1,217 @@
+@font-face {
+  font-family: 'GenKiMin';
+  src: url('../../../../public/GenKiMin2TW-M.otf');
+}
+
+@font-face {
+  font-family: "TaipeiR";
+  src: url("../../../../public/TaipeiSansTCBeta-Regular.ttf");
+}
+
+:host {
+  display: block;
+  margin: 0; 
+  padding: 0; 
+  width: 100%;  
+  box-sizing: border-box;
+  background: linear-gradient(50deg, #95a7dd, #e4efff);
+}
+
+.container {
+  display: flex;
+  min-height: 80vh;
+  gap: 20px;
+  // justify-content: center;
+  // flex-direction: column; /* 讓內容垂直排列 */
+}
+
+
+.text-area {
+  min-height: 30rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  min-width: 40rem;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px gray;
+  padding: 1.5rem;
+  position: relative;
+}
+
+h2 {
+  font-family: 'GenKiMin' , 'sans-serif';
+  color: #333;
+  font-weight: bold;
+}
+
+
+.nav {
+  width: 500px;
+  height: 5px;
+  background-color: #005593;
+  margin-bottom: 2rem;
+}
+
+.update-form {
+  margin-bottom: 1.5rem;
+  
+  span {
+    font-size: 22px;
+    color: #032f7b;
+    font-weight: bold;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.option {
+  align-items: center;
+  font-size: 20px;
+
+  input {
+    margin-right: 20px;
+  }
+
+  input[type="radio"] {
+    transform: scale(1.5); /* 調整縮放比例 */
+  }
+}
+
+
+
+// input 的樣式
+.form-control {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  width: 60%;
+}
+
+.input-area {
+  margin-top: 2rem;
+
+  label {
+    font-size: 20px;
+    color: #333;
+    margin-top: 1.5rem;
+  }
+}
+
+// 下拉式選單
+.form-select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  width: 60%;
+}
+
+
+
+.btn-submit , .btn-cancel {
+  width: 15%;
+  margin-top: 4rem;
+  margin-right: 2rem;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #005593;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit {
+  background-color: #005593;
+  color: white;
+}
+
+.btn-cancel {
+  color: rgb(0, 0, 0);
+  background-color: #dcdcdc;
+}
+
+.btn-submit:hover {
+  background-color: #4c88c4;
+}
+
+.btn-submit:active {
+  background-color: #2a5c89;
+}
+
+.btn-cancel:hover {
+  background-color: #b5b5b5;
+}
+
+.btn-cancel:active {
+  background-color: #959595;
+}
+
+
+// 會員方案
+.plan-area {
+  min-height: 32rem;
+  max-height: 32rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  min-width: 40rem;
+  // background-color: #ffffff;
+  padding: 1.1rem;
+  // box-shadow: 0 0 15px gray;
+  border: 2px solid #5c6b86;
+  border-radius: 8px;
+
+  h2 {
+    text-align: center;
+    background-color: #75a3e287;
+    color: #00146f;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    font-family: "TaipeiR" , sans-serif;
+  }
+
+  .plan-nav {
+    width: 500px;
+    height: 5px;
+    background-color: #005593;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+
+  .flex {
+    margin-top: 10px;
+    padding-top: 10px;
+    display: flex;
+    background-color: #ffffff89;
+    border-radius: 5px;;
+  }
+
+  h3 {
+    width: 130px;
+    text-align: end;
+  }
+
+  p {
+    margin-left: 1.5rem;
+    font-size: 20px;
+    color: #00173d;
+  }
+
+  .line {
+    width: 5px;
+    height: 30px;
+    margin-left: 1.5rem;
+    background-color: #005593;
+  }
+
+}

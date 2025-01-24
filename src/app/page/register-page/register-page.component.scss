@@ -1,0 +1,168 @@
+@font-face {
+  font-family: 'GenKiMin';
+  src: url('../../../../public/GenKiMin2TW-M.otf');
+}
+
+@import "primeicons/primeicons.css";
+
+:host{
+  display: block;
+  margin: 0; 
+  padding: 0; 
+  width: 100%; 
+  box-sizing: border-box;
+  background: linear-gradient(110deg, #8ca6f4, #e4efff);
+}
+
+.container {
+  display: flex;
+  min-height: 80vh;
+  justify-content: center;
+  flex-direction: column; /* 讓內容垂直排列 */
+}
+
+.register-info {
+  margin: 5px auto;
+  width: 90%;
+  min-height: 75vh;
+  padding: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px gray;
+  position: relative; /* 設置父容器為定位基準 */
+
+
+  h1 {
+    font-family: 'GenKiMin' , 'sans-serif';
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .nav {
+    width: 20rem;
+    height: 5px;
+    background-color: #005593;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-size: 22px;
+    font-family: 'GenKiMin' , 'sans-serif';
+    margin-top: 2rem;
+    text-align: center;
+
+  }
+
+  .input-info {
+    margin-top: 3rem;
+    text-align: center;
+
+  }
+
+  .email-area {
+    // position: relative;
+      label {
+        width: 200px;
+      }
+  }
+
+
+  // .input-psw {
+  //   position: relative;
+  //   margin-top: 1.2rem;
+  //     label {
+  //       width: 200px;
+  //     }
+  // }
+
+  .input-email {
+    width: 40%;
+    max-width: 40%;
+    background-color: white;
+    border: 2px solid #dedcdc;
+  }
+
+  .input-email:focus {
+    border: 2px solid #10b981;
+  }
+
+  // ::ng-deep .p-password {
+  //   width: 40%;
+  //   max-width: 40%;
+  // }
+
+  // ::ng-deep .p-password input.p-inputtext {
+  //   width: 100% ;
+  //   max-width: 100% ;
+  //   background-color: white;
+  //   border: 2px solid #dedcdc;
+  // }
+
+  
+  .pwd-area {
+    height: 3rem;
+    margin-top: 1.2rem;
+    label {
+      width: 200px;
+    }
+  }
+
+
+  .password-wrapper {
+    position: relative;
+    margin-top: 1.5rem;
+  }
+
+  .password-wrapper input{
+    width: 40% !important; /* 父級容器寬度 */
+    background-color: #ffffff;
+    border: 2px solid #dedcdc;
+  }
+
+  .password-wrapper input:focus {
+    border: 2px solid #10b981;
+  }
+  
+  
+  .password-wrapper button {
+    position: absolute;
+    right: 250px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+}
+
+
+.btn-area {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  bottom: 60px;
+  right: 360px;
+}
+
+.btn {
+  width: 12rem;
+  height: 3rem;
+  background-color: #005593;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #42a2e7; 
+  transform: scale(1.1);  
+}
+
+.btn:active {
+  background-color: #004080; 
+  transform: scale(0.95);    
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3); /* 內縮陰影 */
+}
+
+

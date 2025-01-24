@@ -1,0 +1,152 @@
+<app-toolbar></app-toolbar>
+
+
+<div class="filter-container">
+
+  <!-- 左側 -->
+  <div class="basic-filters">
+    <h3>目前您的篩選條件 <button mat-raised-button class="back-button" color="primary" (click)="backToHome()">更改條件</button>
+    </h3>
+    <hr />
+    <p>判決年度： {{ data.startYear }} - {{ data.endYear }}</p>
+    <p>案件： {{ data.case }}</p>
+    <p>適用法條：{{ data.laws }}</p>
+    <p>判決法院：
+      @if(data.courts.length !== 0 ){
+        <span class="selected-courts">
+          @for (court of data.courts; track $index; let i = $index) {
+            <span class="selected-item">
+              {{ turnCodeToName(court) }}
+              <button class="remove-btn" (click)="removeCourt(i)">X</button>
+            </span>
+          }
+        </span>
+      }
+    </p>
+  </div>
+
+  <!-- 右側 -->
+  <div class="advanced-filters">
+    <h3>進階篩選條件
+      <!-- 新增觸發按鈕 -->
+      <mat-icon style="cursor: pointer" (click)="openModal()" >add</mat-icon>
+    </h3>
+    <hr />
+
+    <!-- 顯示已套用的篩選條件 -->
+    @if (appliedOptions.length > 0) {
+      <div class="applied-options">
+        <p>已選擇的條件：</p>
+        <div class="d-flex flex-wrap gap-2">
+          @for (option of appliedOptions; track $index; let i = $index) {
+            <span class="adv-select-btn">
+              {{ appliedOptions[i] }}
+              <button class="remove-btn" (click)="removeOption(i)">X</button>
+            </span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Bootstrap Modal -->
+  <div class="modal fade" id="advancedFilterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">進階篩選條件</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- 篩選選項按鈕 -->
+          <div class="d-flex flex-wrap gap-2">
+            @for (option of advancedOptions; track $index) {
+              <button
+              class="btn"
+              [ngClass]="{ 'btn-dark': isSelected(option), 'btn-outline-secondary': !isSelected(option) }"
+              (click)="toggleOption(option)"
+            >
+              {{ option }}
+            </button>
+            }
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="applyFilters()">套用</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 中間總計區 -->
+<div class="number-result">
+  <div class="left-result">
+    <p>平均刑度</p>
+    <h3>5</h3>
+    <p>年</p>
+  </div>
+  <div class="right-result">
+    <p>量刑區間</p>
+    <h3>1 - 10</h3>
+    <p>年</p>
+  </div>
+</div>
+
+
+<!-- 圖表區 -->
+<div class="result-container">
+  <div class="chart-container">
+    <!-- 按鈕區域 -->
+    <div class="button-container">
+      <button  mat-raised-button color="primary" class="small-button" (click)="renderChart('pie')">
+        刑種全貌圖
+      </button>
+      <button  mat-raised-button color="primary" class="small-button" (click)="renderChart('bar')">
+        有期徒刑
+      </button>
+      <button  mat-raised-button color="primary" class="small-button" (click)="renderChart('bar')">
+        無期徒刑
+      </button>
+    </div>
+
+    <!-- 圖表容器 -->
+    <div id="chartContainer" style="width: 90vh; height: 80vh;"></div>
+  </div>
+
+
+
+  <!-- 右下列表區 -->
+  <div class="table-container">
+    <div class="container">
+      <ul class="responsive-table">
+         <!-- 表格標題 -->
+      <li class="table-header">
+        <div class="col col-1">刑度種類</div>
+        <div class="col col-2">件數</div>
+        <div class="col col-3">最低刑度</div>
+        <div class="col col-4">最高刑度</div>
+        <div class="col col-5">平均刑度</div>
+      </li>
+
+      <!-- 這裡使用 for 迴圈，動態生成表格行 -->
+       @for (item of items; track $index) {
+        <li class="table-row">
+          <div class="col col-1">{{ item.type }}</div>
+          <div class="col col-2" (click)="openDialog(item.count)" class="clickable">{{ item.count }}件</div>
+          <div class="col col-3">{{ item.min }}</div>
+          <div class="col col-4">{{ item.max }}</div>
+          <div class="col col-5">{{ item.avg }}</div>
+        </li>
+       }
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+

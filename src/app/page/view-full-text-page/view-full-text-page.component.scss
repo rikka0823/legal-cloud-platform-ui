@@ -1,0 +1,426 @@
+@font-face {
+  font-family: 'Noto1';
+  src: url('../../../../public/NotoSansTC-Regular.ttf');
+}
+
+
+
+:host {
+  display: block;
+  background-color: #e5e5e5;
+}
+
+
+
+// 主容器排版
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  position: relative; //為工具列與按鈕定位
+}
+
+/* 主文內容區域 */
+.main-content {
+  flex: 2; // 主文區域占兩倍大小
+  position: relative;
+  /* 工具列與按鈕絕對定位所需 */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* 新增讓文字置中 */
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+}
+
+
+/* 左側瀏覽紀錄欄位 */
+.left-container {
+  flex: 1;
+  margin-right: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 右側 aside 區塊 */
+.aside-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* 垂直排列子元素 */
+  gap: 5px; /* 子元素之間的間距 */
+  margin-left: 20px;
+}
+
+.aside-container {
+  // flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  // margin-left: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  li {
+    font-size: 1.2rem;
+  }
+}
+
+.circle-Selection-Function-Hint {
+  // flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  // margin-left: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  font-size: 28px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 高亮文字的預設樣式 */
+#toptext {
+  font-family: 'Noto1', 'monospace';
+  font-size: 25px;
+  background: #ffffff;
+  padding: 20px;
+  border: none;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+//================================================
+// 工具表按鈕樣式
+.marker-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.marker-painter-0 {
+  background-color: yellow;
+}
+
+.marker-painter-1 {
+  background-color: lightgreen;
+}
+
+.marker-painter-2 {
+  background-color: lightblue;
+}
+
+.marker-eraser {
+  width: 50px;
+  height: 50px;
+  background-color: #f8d7da;
+}
+
+.marker-icon:hover {
+  transform: scale(1.1);
+}
+
+//==============================================
+// 工具表外觀
+.toolbar {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 1000;
+  transform: scale(0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.1s ease, visibility 0.1s ease;
+}
+
+.toolbar-inner {
+  left: auto;
+  border-radius: 10px;
+  background-color: #5a6268;
+  color: white;
+  font-size: 23px;
+  border: none;
+  transition: 0.25s;
+
+  &:hover{
+    transform: scale(1.05,1.05);
+  }
+}
+
+.toolbar.hidden {
+  opacity: 0;
+  visibility:
+    hidden;
+}
+
+.toolbar:not(.hidden) {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.toolbar .toolbar-content .line {
+  height: 1px;
+  box-shadow: #ddd;
+  margin: 8px 0;
+}
+
+
+// 工具表按鈕容器
+.toolbar-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+// 工具內按鈕格式
+.toolbar-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  padding: 8px;
+}
+
+
+//===============================================
+// 螢光筆效果
+span[style*="box-shadow"] {
+  display: inline-block !important;
+  padding: 0 2px !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+// 高亮文字的 hover 效果
+span[style*="box-shadow"]:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+//=====================================================
+//回上頁按鈕
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  /* 靠近底部 */
+  left: 20px;
+  /* 靠近左側 */
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(3, 21, 70);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  background-color: rgb(5, 30, 100);
+  transform: scale(1.05);
+}
+
+
+//=====================================================
+// 右上工具列
+/* 工具列主要樣式 */
+.document__toolbar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  .mat-icon {
+    color: #000000 !important;
+    transition: color 0.3s ease;
+  }
+}
+
+/* 按鈕組樣式 */
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* 工具列按鈕的基礎樣式 */
+.toolbar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+
+  &:hover {
+    background-color: #b3b3b3;
+  }
+}
+
+/* 書籤按鈕樣式（根據狀態變化） */
+.toolbar-button.star-button {
+  &.active {
+    background-color: white;
+    color: green;
+
+    .mat-icon {
+      color: green !important;
+    }
+  }
+
+  &.inactive {
+    background-color: white;
+    border-color: #ccc;
+    color: black;
+
+    .mat-icon {
+      color: black !important;
+    }
+  }
+}
+
+
+
+//==============================================
+// 頁面載入 渲染處理
+.hidden {
+  visibility: visible;
+  opacity: 0;
+}
+
+.toolbar-button {
+
+  &:focus,
+  &:active {
+    outline: none;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+.mat-button,
+.mat-icon-button {
+
+  &:focus,
+  &:active {
+    outline: none;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+
+//===========================================
+// 列印功能
+.print-options {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  /* 水平居中並向下偏移 */
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  /* 垂直排列按鈕和文字區塊 */
+  align-items: center;
+  /* 居中對齊內容 */
+  gap: 10px;
+  /* 按鈕和文字區塊之間的距離 */
+}
+
+.print-options button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.print-options button:hover {
+  background-color: #5a6268;
+}
+
+.print-options button:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 讓按鈕橫向排列 */
+.arrow-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  /* 按鈕間距 */
+  white-space: nowrap;
+  /* 禁止文字換行 */
+}
+
+.print-options p {
+  margin: 0;
+  padding: 5px;
+  font-size: 24px;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  /* 與按鈕分隔 */
+  width: 100%;
+  /* 確保文字與按鈕對齊 */
+}
+
+
+@mixin print-color-adjust($value) {
+  print-color-adjust: $value;
+  -webkit-print-color-adjust: $value;
+}

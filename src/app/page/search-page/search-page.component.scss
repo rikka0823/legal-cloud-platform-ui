@@ -1,0 +1,269 @@
+@font-face {
+  font-family: 'TaipeiSansTCBeta';
+  src: url('../../../../public/TaipeiSansTCBeta-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'ZanMaru';
+  src: url('../../../../public/ZenMaruGothic-Regular.ttf');
+}
+
+@font-face {
+  font-family: "TaipeiR";
+  src: url("../../../../public/TaipeiSansTCBeta-Regular.ttf");
+}
+
+
+
+:host {
+  display: block;
+  background-color: #ccd9ff40; 
+  margin: 0; 
+  padding: 0; 
+  width: 100%;  
+  box-sizing: border-box;
+  position: relative; /* 設置父容器為定位基準 */
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column; /* 讓內容垂直排列 */
+}
+
+.login {
+  font-size: 22px;
+  font-family: 'TaipeiR', 'sans-serif';
+  position: absolute;
+  right: 20px;
+  top: 5px;
+
+  .click {
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: transform 0.2s ;
+
+    &:hover {
+      transform: scale(1.5) ;
+    }
+  }
+
+  span {
+    margin-left: 1rem;
+  }
+}
+
+
+
+.search-area{
+  width: 90%;
+  background: #ffffffd1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 3rem;
+  text-align: center;
+
+  h1 {
+    font-family: 'ZanMaru', 'sans-serif';
+    margin-bottom: 1rem;
+    font-size: 56px;
+  }
+
+  .input-search-button{
+    display: flex; /* 使用 Flexbox */
+    align-items: center; /* 垂直居中對齊 */
+    justify-content: center;
+    gap: 1rem; /* 增加間距 */
+
+
+    input{
+      width: 60%;
+      padding: 10px;
+      border: none ;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #ffffff;
+      color:black;
+      border: 2px solid rgb(0, 30, 111)
+    }
+
+    button{
+      padding: 8px 20px;
+      font-size: 22px;
+      font-weight: bold;
+      background-color: #031546;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+  }
+
+}
+
+.bottom-area{
+  margin: 2rem auto;
+  width: 90%;
+
+
+  /* 主按鈕樣式 */
+  .btn {
+    font-size: 20px;
+    padding: 8px 16px;
+    margin-left: 5%;
+    border: none;
+    transition: all 0.2s;
+
+    span{
+      color: #000000;
+      font-size: 26px;
+      font-weight: bold;
+    }
+  }
+
+
+  #collapseExample{
+    width: 100%;
+  }
+
+  .layout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    border: none;
+    // background-color: #878787e3;
+
+    .accordion-container {
+      width: 47%;
+
+
+      .custom1 {
+        background-color: #ffffff !important;
+        color: #000 !important;
+      }
+
+
+    }
+
+    .p-accordionheader{
+      background-color: transparent;
+      border: none;
+      color: #0a0a0a;
+      font-size: 20px;
+    }
+
+
+  }
+
+
+
+  .case-type{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    p-checkbox{
+      display: flex;
+      align-items: center;
+    }
+  }
+
+}
+
+/* 統一 input 框樣式 */
+input[type="text"],
+input,
+select {
+  width: 25%;
+  padding: 8px 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+}
+
+input[type="date"]{
+  width: 40%;
+  padding: 8px 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23bbbbb" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+  cursor: pointer;
+}
+
+/* 適用於 ngModel 的 input 框 */
+input[ngModel],
+input[pInputText] {
+  width: 60%;
+  padding: 8px 12px;
+  margin: 8px 2px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+}
+
+/* 適用於 <select> 的樣式 */
+select {
+  padding: 8px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 19%;
+  height: 2.5rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #000;
+}
+
+.wide-select {
+  width: 60%;
+  height: 2.5rem;
+  padding: 8px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+}
+
+/* 多選框樣式 */
+p-multiselect {
+  width: 70%;
+  background-color: #fff;
+  color: #000;
+}
+
+/* 表單元素統一的 focus 樣式 */
+input:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+

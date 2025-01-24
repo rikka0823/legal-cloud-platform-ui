@@ -1,0 +1,291 @@
+<div class="search-area">
+
+  <!-- 關鍵字區域 -->
+  <div class="keyword-search">
+    <div class="input-search-button">
+      <input [(ngModel)]="keywords" placeholder="可輸入法院名稱、裁判案號、案由、全文檢索字詞"
+        (keyup.enter)="searchAgain()"><!--按 enter 直接搜尋-->
+      <button type="button" class="btn btn-secondary btn-sm" (click)="searchAgain()">搜尋</button>
+    </div>
+  </div>
+
+
+  <!-- 進階條件 -->
+  <div class="bottom-area">
+    <p>
+      <span class="btn" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+        aria-controls="collapseExample" (click)="toggleAdvanced()">
+        @if (!isExpanded) {
+        <span class="d-flex align-items-center">
+          進階篩選條件 <mat-icon>keyboard_arrow_down</mat-icon>
+        </span>
+
+        }
+        @if (isExpanded) {
+        <span class="d-flex align-items-center">
+          收起篩選條件 <mat-icon>keyboard_arrow_up</mat-icon>
+        </span>
+        }
+      </span>
+    </p>
+
+
+    <div class="collapse" id="collapseExample">
+      <div class=" card-body">
+
+        <!-- 進階條件中的搜尋 -->
+        <div class="layout-container">
+          <!-- 左邊的 Accordion -->
+          <div class=" flex justify-center accordion-container">
+            <p-accordion class="custom1" [multiple]="true">
+              <p-accordion-panel value="0">
+                <p-accordion-header>裁判案由</p-accordion-header>
+                <p-accordion-content>
+                  <p class="m-0">
+                    <input pInputText id="username" aria-describedby="username-help" pSize="small"
+                      [(ngModel)]="inputCase" placeholder="例如：傷害等" />
+                  </p>
+                </p-accordion-content>
+              </p-accordion-panel>
+              <p-accordion-panel value="1">
+                <p-accordion-header>選擇法院</p-accordion-header>
+                <p-accordion-content>
+                  <div class="m-0">
+                    <div class="flex justify-center test">
+                      <p-multiselect [options]="groupedCourts" [group]="true" [(ngModel)]="inputCourts"
+                        placeholder="請選擇法院" scrollHeight="250px" display="chip" styleClass="w-full md:w-30"
+                        appendTo="body" size="small">
+                        <div class=".p-multiselect-header">全選</div>
+                        <ng-template let-group #group>
+                          <div class="flex items-center">
+                            <span>{{ group.label }}</span>
+                          </div>
+                        </ng-template>
+                      </p-multiselect>
+                    </div>
+                  </div>
+                </p-accordion-content>
+              </p-accordion-panel>
+              <p-accordion-panel value="2">
+                <p-accordion-header>法條搜索</p-accordion-header>
+                <p-accordion-content>
+                  <p class="m-0">
+                    <input pInputText id="username" aria-describedby="username-help" pSize="small" [(ngModel)]="law"
+                      (keyup)="updateLawsList()" placeholder="例如：刑法第277條;刑法271條" />
+                    <small id="username-help" style="display: inline-block; margin-left: 1%;">不同法條請用分號（;）隔開</small>
+                    @if (errorMessage) {
+                    <small style="color: red; display: inline-block; margin-left: 1%">{{errorMessage}}</small>
+                    }
+                  </p>
+                </p-accordion-content>
+              </p-accordion-panel>
+              <p-accordion-panel value="3">
+                <p-accordion-header>案件類型</p-accordion-header>
+                <p-accordion-content>
+                  <div class="m-0">
+                    <div class="case-type">
+                      <p-checkbox inputId="ingredient1" name="lawType" value="刑事" [(ngModel)]="lawType" />
+                      <label for="ingredient1" class="ml-2"> 刑事 </label>
+                      <p-checkbox inputId="ingredient2" name="lawType" value="民事" [(ngModel)]="lawType" />
+                      <label for="ingredient2" class="ml-2"> 民事 </label>
+                    </div>
+                  </div>
+                </p-accordion-content>
+              </p-accordion-panel>
+            </p-accordion>
+          </div>
+
+          <!-- 右邊的 Accordion -->
+          <div class=" flex justify-center accordion-container">
+            <p-accordion [multiple]="true">
+              <p-accordion-panel value="0">
+                <p-accordion-header>裁判字號</p-accordion-header>
+                <p-accordion-content>
+                  <p class="m-0">
+                    <select [(ngModel)]="year">
+                      <option value=""></option>
+                      @for (year of ['89', '90', '91', '92', '93', '94', '95', '96', '97', '98', '99', '100', '101',
+                      '102', '103', '104', '105', '106', '107', '108', '109', '110', '111', '112', '113']; track $index)
+                      {
+                      <option [value]="year">{{ year }}</option>
+                      }
+                    </select>
+                    年度
+                    <input [(ngModel)]="zhi">
+                    字第
+                    <input [(ngModel)]="hao">
+                    號
+                  </p>
+                </p-accordion-content>
+              </p-accordion-panel>
+              <p-accordion-panel value="1">
+                <p-accordion-header>裁判期間</p-accordion-header>
+                <p-accordion-content>
+                  <p class="m-0">
+                    <input type="date" id="start" name="trip-start" [(ngModel)]="startDate" />
+                    <span style="padding-left: 0.3rem ; padding-right: 0.3rem;">至</span>
+                    <input type="date" id="start" name="trip-start" [min]="startDate" [(ngModel)]="endDate" />
+                  </p>
+                </p-accordion-content>
+              </p-accordion-panel>
+              <p-accordion-panel value="2">
+                <p-accordion-header>裁判種類</p-accordion-header>
+                <p-accordion-content>
+                  <p class="m-0">
+                    <select [(ngModel)]="caseType" class="wide-select">
+                      <option value="">請選擇種類</option>
+                      <option value="判決">判決</option>
+                      <option value="裁定">裁定</option>
+                    </select>
+                  </p>
+                </p-accordion-content>
+              </p-accordion-panel>
+            </p-accordion>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 統計圖 -->
+<div class="search-result-container">
+
+  <mat-tab-group [selectedIndex]="defaultTabIndex">
+
+    <!-- 案件列表 -->
+    <mat-tab label="案件列表">
+      <div class="case-list">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th (click)="toggleSort()" style="cursor: pointer">
+                裁判日期：
+                @if (isAscending) {
+                <span>&#9650;由舊至新</span>
+                }
+                @if (!isAscending) {
+                <span>&#9660;由新至舊</span>
+                }
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of visibleCases; track item.id ) {
+            <tr>
+              <td class="display-li">
+                <div class="main-content">
+                  <span class="court">{{ this.sessionServiceService.turnCodeToName(item.court) }}</span>
+                  <span class="separator">|</span>
+                  <span class="id" (click)="checkContent(item.groupId, item.id, item.court)">{{ item.id }}</span>
+                  <span class="separator">|</span>
+                  <span class="date">{{ item.verdictDate }}</span>
+                  @if (this.isLogin) {
+                  <i class="pi pi-bookmark-fill" (click)="toggleBookmark(item)"
+                  style="font-size: 1.5rem; cursor: pointer;"
+                  [ngClass]="item.isBookmarked ? 'bookmark-green' : 'bookmark-gray'"
+                    >
+                  </i>
+                  }
+                </div>
+                <div class="summary">
+                  <div class="summary-detail" style="width: 12rem;"><span>法官：</span>{{ item.judgeName }}</div>
+                  <div class="summary-detail" style="width: 15rem;"><span>被告：</span>{{ item.defendantName }}</div>
+                  <div class="summary-detail" style="width: 13rem;" ><span>裁判種類：</span>{{ item.docType }}</div>
+                  <div class="summary-detail" style="width: 22rem;" ><span>案由：</span>{{ item.charge }}</div>
+                  <div class="summary-detail"><span>裁判日期：</span>{{ item.verdictDate }}</div>
+                </div>
+                <div class="view-text">
+                  <p [innerHTML]="highlightKeywordOnce(searchSessionService.searchData.searchName, item.content)"></p>
+                  <button (click)="checkContent(item.groupId, item.id, item.court)">顯示全文</button>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+
+        <!-- 分頁控制 -->
+        <p-paginator [rows]="itemsPerPage" [totalRecords]="totalRecords" [first]="first"
+          (onPageChange)="onPageChange($event)"></p-paginator>
+      </div>
+    </mat-tab>
+
+    <!-- 統計圖 -->
+    <mat-tab label="統計圖">
+      <div class="case-details">
+        <div class="card">
+
+          <!-- 右中量刑區間、統計列表區 -->
+          <div class="table-container">
+
+            <div class="number-result">
+              <div class="left-result">
+                <p>平均刑度</p>
+                <h3>5</h3>
+                <p>年</p>
+              </div>
+              <div class="right-result">
+                <p>量刑區間</p>
+                <h3>1 - 10</h3>
+                <p>年</p>
+              </div>
+            </div>
+
+            <div class="container">
+              <ul class="responsive-table">
+                <!-- 表格標題 -->
+                <li class="table-header">
+                  <div class="col col-1">刑度種類</div>
+                  <div class="col col-2">件數</div>
+                  <div class="col col-3">最低刑度</div>
+                  <div class="col col-4">最高刑度</div>
+                  <div class="col col-5">平均刑度</div>
+                </li>
+
+                <!-- 這裡使用 for 迴圈，動態生成表格行 -->
+                @for (item of items; track $index) {
+                <li class="table-row">
+                  <div class="col col-1">{{ item.type }}</div>
+                  <div class="col col-2" (click)="openDialog2(item.count)" class="clickable">{{ item.count }}件</div>
+                  <div class="col col-3">{{ item.min }}</div>
+                  <div class="col col-4">{{ item.max }}</div>
+                  <div class="col col-5">{{ item.avg }}</div>
+                </li>
+                }
+              </ul>
+
+            </div>
+          </div>
+
+          <!-- 右下圖表區 -->
+          <div class="chart-container">
+            <!-- 按鈕區域 -->
+            <div class="button-container">
+              <button mat-raised-button color="primary" class="small-button" (click)="renderChart('pie')">
+                刑種全貌圖
+              </button>
+              <!-- <button mat-raised-button color="primary" class="small-button" (click)="renderChart('bar')">
+                有期徒刑
+              </button>
+              <button mat-raised-button color="primary" class="small-button" (click)="renderChart('bar')">
+                無期徒刑
+              </button> -->
+            </div>
+
+            <!-- 圖表容器 -->
+            <!-- <div id="chartContainer1" style="width: 90vh; height: 80vh;"></div> -->
+            @defer {
+            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" class="chart-css">
+            </highcharts-chart>
+            }
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
+
+<p-scrolltop />

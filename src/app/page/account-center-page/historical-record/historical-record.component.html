@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>瀏覽紀錄</h2>
+  <div class="nav"></div>
+
+  <ul>
+    <li class="header">
+      <span class="id-header">字號</span>
+      <span class="date-header">瀏覽日期</span>
+    </li>
+    @for(item of historicalRecord ; track $index){
+    <li class="content">
+      <span class="id" (click)="checkContent(item.groupId, item.id, item.court)">{{item.id}}</span>
+      <span class="date">
+        {{item.year}}/
+        {{item.month}}/
+        {{item.date}}
+      </span>
+    </li>
+    }
+  </ul>
+</div>

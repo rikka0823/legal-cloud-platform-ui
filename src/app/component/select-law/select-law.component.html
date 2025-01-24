@@ -1,0 +1,66 @@
+<mat-toolbar>
+  <span>選擇法條</span>
+  <button mat-icon-button mat-dialog-close class="close_icon">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<mat-dialog-content class="mat-text">
+    <div class="form-content">
+        <!-- Checkbox 選擇法院 -->
+        @switch (selectedCase) {
+          @case("殺人"){
+            @for (item of low.murder; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("搶奪暨強盜") {
+            @for (item of low.robbery; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("傷害") {
+            @for (item of low.injury; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("不能安全駕駛") {
+            @for (item of low.drive; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("肇事逃逸") {
+            @for (item of low.escape; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("詐欺") {
+            @for (item of low.fraud; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("毒品") {
+            @for (item of low.drug; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("槍砲") {
+            @for (item of low.gun; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+          @case ("妨礙性自主") {
+            @for (item of low.sexualAssault; track $index) {
+              <p><mat-checkbox [(ngModel)]="item.selected" >{{item.name}}</mat-checkbox></p>
+            }
+          }
+        }
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button type="submit" (click)="submit()">
+    <mat-icon>save</mat-icon> 選擇
+  </button>
+</mat-dialog-actions>
