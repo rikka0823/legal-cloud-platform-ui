@@ -1,10 +1,14 @@
 # legal-cloud-platform-ui
 
-`legal-cloud-platform-ui` 是一個基於 Angular 的前端應用程式，與 `legal-cloud-platform-api` 後端 API 結合，提供用戶友好的介面來操作法律雲平台的功能，包括法律文件檢索、帳戶管理、書籤和螢光筆等。旨在建立一個便捷的法律雲平台操作介面。
-
-前端頁面上，本人負責刻畫統計畫面，以及串接會員功能相關 API。專案分工與功能介紹，請參考[`法律雲平台`](https://drive.google.com/file/d/1d-QA9C096Mfpb_jreCERc_OvLr8vXjI0/view?usp=sharing)。
+`legal-cloud-platform-ui` 是一個基於 Angular 的前端應用程式，與 `legal-cloud-platform-api` 後端 API 結合的**法律雲平台**，提供用戶友好的介面來操作法律文件檢索、帳戶管理、書籤和螢光筆等功能，旨在建立一個便捷的法律雲平台操作介面。
 
 後端 API，詳見於 [`legal-cloud-platform-api`](https://github.com/rikka0823/legal-cloud-platform-api)。
+
+## Project Structure
+
+前端頁面上，本人負責刻畫統計畫面，以及串接會員功能相關 API。
+
+專案架構、分工與功能介紹，請參考[`法律雲平台`](https://drive.google.com/file/d/1d-QA9C096Mfpb_jreCERc_OvLr8vXjI0/view?usp=sharing)。
 
 ## Key Features
 
@@ -27,7 +31,7 @@
 
 ## Page Display
 
-畫面展示，詳見於 [`法律雲平台`](https://drive.google.com/file/d/1d-QA9C096Mfpb_jreCERc_OvLr8vXjI0/view?usp=drive_link) (第 15 到第 21 頁)。
+畫面展示，詳見於 [`法律雲平台`](https://drive.google.com/file/d/1d-QA9C096Mfpb_jreCERc_OvLr8vXjI0/view?usp=drive_link)（第 15 到第 21 頁）。
 
 ## API Endpoints
 
