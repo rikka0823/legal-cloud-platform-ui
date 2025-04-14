@@ -29,9 +29,9 @@
 - **Bootstrap 5**：用於版面設計，便於建立按鈕等元件及美化版面排版。
 - **Chart.js**：用於統計數據的圖表化展示。
 
-## Page Display
+## Page Previews
 
-畫面展示，詳見於 [`法律雲平台`](https://drive.google.com/file/d/1d-QA9C096Mfpb_jreCERc_OvLr8vXjI0/view?usp=drive_link)（第 15 到第 21 頁）。
+畫面預覽，詳見於 [`法律雲平台`](https://drive.google.com/file/d/1d-QA9C096Mfpb_jreCERc_OvLr8vXjI0/view?usp=drive_link)（第 15 到第 21 頁）。
 
 ## API Endpoints
 
