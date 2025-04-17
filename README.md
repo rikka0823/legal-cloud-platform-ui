@@ -69,7 +69,7 @@
 - `GET /accountSystem/email-all-highlighte`：獲取用戶的所有螢光筆標註。
 - `GET /accountSystem/highlighte-already-exists`：檢查螢光筆標註是否已存在。
 
-## 後端應用
+## Backend Application
 
 後端應用負責提供用戶法律查詢與會員等資料庫相關操作功能，並通過 RESTful API 與前端進行串接。
 
